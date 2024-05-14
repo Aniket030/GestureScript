@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            overflow: hidden;
+            background-color: #c7f3ee;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .form-container {
+            width: 400px;
+            max-width: 100%;
+            padding: 30px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            background-color: #fff;
+            color: #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #ff9900;
+            color: #fff;
+            border: none;
+            padding: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #b37416;
+        }
+
+        .form-group {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .form-group p {
+            margin-bottom: 0;
+        }
+
+        .form-group a {
+            color: #ff9900;
+            text-decoration: none;
+        }
+
+        .form-group a:hover {
+            text-decoration: underline;
+        }
+
+        .gender-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .gender-container select {
+            flex: 1;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h2>Sign Up</h2>
+        <form action="/signup" method="post">
+            <label for="name">Username:</label>
+            <input type="text" id="name" name="name" required autocomplete="off" />
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required autocomplete="off" />
+            <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required min="6" max="100" />
+            <input type="submit" value="Sign Up" />
+        </form>
+        <div class="form-group">
+            <p>Already have an Account? <a href="/login">Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Check if the URL contains a success query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const success = urlParams.get('success');
+
+        // If the success parameter is true, show the success message
+        if (success === 'true') {
+            alert('User created successfully. You can now login.');
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form');
+            const passwordInput = document.getElementById('password');
+
+            form.addEventListener('submit', function (event) {
+                const password = passwordInput.value;
+
+                if (password.length < 7) {
+                    event.preventDefault();
+                    alert('Password must be at least 7 characters long.');
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
